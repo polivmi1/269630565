@@ -3,9 +3,8 @@ package com.example.bug270656245.ui.screens
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.*
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -54,7 +53,11 @@ class MainActivity : ComponentActivity() {
                         Box(Modifier.padding(scaffoldPadding)) {
                             if (native) {
                                 val navController = rememberAnimatedNavController()
-                                AnimatedNavHost(navController = navController, startDestination = "one") {
+                                AnimatedNavHost(
+                                    navController = navController,
+                                    startDestination = "one",
+                                    contentAlignment = Alignment.TopCenter,
+                                ) {
                                     composable("one") { One(navController) }
                                     composable("two") { Two(navController) }
                                 }
